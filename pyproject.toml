@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portafolio-env"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Gad Miranda <flareon_rojo@hotmail.com>"]
 readme = "README.md"
