@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Acerca De...
+{% endblock title %}
+    
+    
+{% block image-header %} 
+    about 
+{% endblock image-header %} 
+
+{% block title-header %}
+<div>
+    <h1 class="display-4 fw-bold">Gad Miranda</h1>
+</div>
+<div>
+    <h3 class="fs-2">Desarrollador de software | Creador de contenido digital.</h3>
+</div>
+{% endblock title-header %} 
+
+
+{% block content %}
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-light">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-4 offset-md-auto">
+                <img class="img-fluid img-thumbnail img-circle img-perfil " src= {% static "core/img/foto-perfil.png" %} alt="">
+            </div>
+            <div class="col-6">
+                <h4> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores dicta earum delectus blanditiis, totam saepe necessitatibus tempora laborum soluta cumque velit officiis, animi vitae quos recusandae sequi adipisci sint in? </h4>
+            </div>
+        </div> 
+        
+        <div class="row d-flex pt-5">
+            <div class="col-12">
+                <h2 class="fw-bold">Formación</h2>
+                {% for about in aboutme  %}
+                
+                <h3>Formación Reciente Nº  {{ about.pk }} </h3>
+                
+                {% if about.education %}
+                    <p class="text-justify-custom"><strong>Educacion:</strong> {{ about.education }} </p>
+                {% endif %}
+
+                
+                {% if about.experience %}
+                    <p class="text-justify-custom"><strong>Experiencia:</strong> {{ about.experience }} </p>
+                {% endif %}
+                
+                
+                {% if about.skills %}
+                    <p class="text-justify-custom"><strong>Habilidad:</strong> {{ about.skills }} </p>
+                {% endif %}
+                    
+                <p class="text-justify-custom"><strong>Descripción:</strong> {{ about.description }} </p>
+
+                <hr>
+                {% endfor %}
+
+                <h2 class="fw-bold">Conocimientos</h2>
+                <section class="skills" id="skills">
+                    <div class="skills__container" id="skills">
+                        
+                        {% for know in knowledge %}
+                        <div class="card__skills">
+                            <div class="skill__thumbnail">
+                                <img class="skill__logo" src={{ know.image.url }} alt="html5">
+                            </div>
+    
+                            <div class="skill__texto">
+                                <p class="skill__titulo">{{ know.title }} </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+    
+                        
+                    </div>
+                </section>
+            </section>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

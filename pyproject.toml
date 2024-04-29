@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "portafolio-env"
+version = "0.1.0"
+description = ""
+authors = ["Gad Miranda <flareon_rojo@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.2"
+pendulum = "3.0.0"
+django = "5.0.4"
+black = "^24.4.0"
+isort = "^5.13.2"
+pillow = "^10.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
