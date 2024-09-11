@@ -1,6 +1,16 @@
 from django.contrib import admin
 
-from .models import Education, Experience, Skill, AboutMe, Knowledge
+from .models import Education, Experience, Skill, AboutMe, Knowledge, PortfolioHeader
+
+@admin.register(PortfolioHeader)
+class PortfolioHeaderAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Deshabilitar la opción de agregar si ya existe una instancia
+        return not PortfolioHeader.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Deshabilitar la opción de eliminar
+        return False
 
 @admin.register(Education)
 class AboutMeEducation(admin.ModelAdmin):

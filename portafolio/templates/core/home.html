@@ -1,9 +1,57 @@
 {% extends 'core/base.html' %}
 
 {% load static %}
-   
+
+{% block imgperfil %}
+  {{ portfolio_header.profile_image.url }}
+{% endblock imgperfil %}
+
+{% block nombre %}
+  {{ portfolio_header.name }}
+{% endblock nombre %}
+
+{% block twitter %}
+  {{ portfolio_header.twitter }}
+{% endblock %} 
+
+{% block facebook %}
+  {{ portfolio_header.facebook }}
+{% endblock %}
+
+{% block instagram %}
+  {{ portfolio_header.instagram }}
+{% endblock %}
+
+{% block linkedin %}
+  {{ portfolio_header.linkedin }}
+{% endblock %}
+
+{% block github %}
+  {{ portfolio_header.github }}
+{% endblock %}
+
+{% block youtube %}
+  {{ portfolio_header.youtube }}
+{% endblock %}
+
+{% block nombre_about %}
+  {{ portfolio_header.name }}
+{% endblock nombre_about %}
+
+{% block background %}
+  style="background: url('{{ portfolio_header.hero_background.url }}') top right; background-size: cover;"  
+{% endblock background %}
+
+
+{% block typed_items %}
+{{ portfolio_header.typed_items }}  
+{% endblock typed_items %}
+  
+
+
 
 {% block content %}
+
 
 <main id="main">
 
@@ -13,12 +61,12 @@
 
         <div class="section-title">
           <h2>About</h2>
-          <p>Soy un apasionado desarrollador de software con experiencia en la creación de aplicaciones web utilizando tecnologías como Python y Django. Con una sólida formación técnica y he colaborado en proyectos que van desde sitios web simples hasta soluciones complejas para agencias automotrices líderes en el mercado. Me considero un jugador de equipo comprometido, siempre dispuesto a aprender y enfrentar nuevos desafíos con creatividad y determinación.</p>
+          <p>{{ portfolio_header.bio }}</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4" data-aos="fade-right">
-            <img src={% static "core/img/foto-perfil.png" %} class="img-fluid" alt="">
+            <img src= {{ portfolio_header.profile_image.url }} class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
             <h3>UI/UX Designer &amp; Web Developer.</h3>
