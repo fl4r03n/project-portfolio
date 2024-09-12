@@ -466,6 +466,12 @@ section {
   background-color: #149ddd;
 }
 
+.skill-icon {
+  width: 40px; /* Ajusta el tamaño de la imagen */
+  height: 40px; /* Ajusta el tamaño de la imagen */
+  margin-right: 8px; /* Espacio entre la imagen y el nombre */
+  object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
+}
 /*--------------------------------------------------------------
 # Resume
 --------------------------------------------------------------*/
