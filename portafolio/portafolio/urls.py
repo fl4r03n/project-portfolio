@@ -25,6 +25,11 @@ urlpatterns = [
     path('about-me/', about_me_views.about, name='about'),
     path('contact/', core_views.contact, name='contact'),
     path('portfolio/', portfolio_views.portfolio, name='portfolio'),
+    path(
+        "portfolio-details/<int:pk>/",
+        core_views.portfolio_details,
+        name="portfolio-details",
+    ),
     path('admin/', admin.site.urls),
 ]
 

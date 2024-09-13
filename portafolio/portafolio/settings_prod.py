@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['gadmiranda.pythonanywhere.com','localhost','127.0.0.1']
 
-
+X_FRAME_OPTIONS = "SAMEORIGIN"
 # Application definition
 
 INSTALLED_APPS = [

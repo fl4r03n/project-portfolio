@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+    Portfolio-details -
+{% endblock title %}
+
+
+{% block header %}
+  
+{% endblock header %}
+  
+
+{% block content %}
+<main id="main">
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper">
+                        <div class="swiper-wrapper align-items-center">
+                            <div class="swiper-slide">
+                                <img src="{{ item.image1.url }}" alt="">
+                            </div>
+                            {% if item.image2 %}
+                            <div class="swiper-slide">
+                                <img src="{{ item.image2.url }}" alt="">
+                            </div>
+                            {% endif %}
+                            {% if item.image3 %}
+                            <div class="swiper-slide">
+                                <img src="{{ item.image3.url }}" alt="">
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>Project information</h3>
+                        <ul>
+                            <li><strong>Category</strong>: {{ item.category }}</li>
+                            <li><strong>Client</strong>: {{ item.client }}</li>
+                            <li><strong>Project date</strong>: {{ item.project_date }}</li>
+                            <li><strong>Project URL</strong>: <a href="{{ item.project_url }}" target="_blank">{{ item.project_url }}</a></li>
+                        </ul>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>{{ item.title }}</h2>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}
+
+
+{% block footer %}
+  
+{% endblock footer %}
+  
