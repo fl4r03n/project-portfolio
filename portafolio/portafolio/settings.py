@@ -1,12 +1,12 @@
 # settings.py
 
-import os
+from decouple import config
 
 # Determinar el entorno
-ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
+ENVIRONMENT = config("ENVIRONMENT")
 
 # Importar las configuraciones adecuadas según el entorno
-if ENVIRONMENT == 'production':
+if ENVIRONMENT == 'prod':
     from .settings_prod import *
 else:
     from .settings_dev import *
