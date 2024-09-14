@@ -23,13 +23,13 @@ from about_me import views as about_me_views
 urlpatterns = [
     path('',core_views.home, name='home'),
     path('about-me/', about_me_views.about, name='about'),
-    path('contact/', core_views.contact, name='contact'),
     path('portfolio/', portfolio_views.portfolio, name='portfolio'),
     path(
         "portfolio-details/<int:pk>/",
         core_views.portfolio_details,
         name="portfolio-details",
     ),
+    path("contact", core_views.contact, name="contact"),
     path('admin/', admin.site.urls),
 ]
 

@@ -376,3 +376,92 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+    
+class TestimonialDesc(models.Model):
+    tittle_section = models.CharField(
+        _("Título de Sección"), max_length=100, default="Testimonials"
+    )
+    desc_section = models.TextField(
+        _("Descripción de Sección"), default="Magnam dolores commodi suscipit..."
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.pk and TestimonialDesc.objects.exists():
+            raise ValueError("Solo puede existir una instancia de TestimonialDesc")
+        return super(TestimonialDesc, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("Descripcion de Testimonios")
+        verbose_name_plural = _("Descripciones de Testimonios")
+
+    def __str__(self):
+        return self.tittle_section
+
+
+class Testimonial(models.Model):
+    author_name = models.CharField(_("Nombre del autor"), max_length=100)
+    author_position = models.CharField(_("Posición del autor"), max_length=100)
+    testimonial_text = models.TextField(_("Texto del testimonio"))
+    testimonial_image = models.ImageField(
+        _("Imagen del testimonio"),
+        upload_to="testimonials/",
+        blank=True,
+        null=True,
+        validators=[validate_image_size],
+    )
+
+    class Meta:
+        verbose_name = _("Testimonio")
+        verbose_name_plural = _("Testimonios")
+
+    def __str__(self):
+        return f"{self.author_name} - {self.author_position}"
+
+
+@receiver(pre_save, sender=Testimonial)
+def delete_old_imagen_testimonial(sender, instance, **kwargs):
+    if instance.pk:
+        try:
+            old_instance = Testimonial.objects.get(pk=instance.pk)
+        except Testimonial.DoesNotExist:
+            return
+        if (
+            old_instance.testimonial_image
+            and old_instance.testimonial_image != instance.testimonial_image
+        ):
+            if os.path.isfile(old_instance.testimonial_image.path):
+                os.remove(old_instance.testimonial_image.path)
+
+
+@receiver(pre_delete, sender=Testimonial)
+def delete_image_file_testimonial(sender, instance, **kwargs):
+    if instance.testimonial_image:
+        if os.path.isfile(instance.testimonial_image.path):
+            os.remove(instance.testimonial_image.path)
+            
+
+class ContactInfo(models.Model):
+    tittle_section = models.CharField(
+        _("Título de Sección"), max_length=100, default="Contact Information"
+    )
+    desc_section = models.TextField(
+        _("Descripción de Sección"),
+        default="Aquí puede encontrar mi información de contacto...",
+    )
+    location = models.CharField(_("Ubicación"), max_length=255, default="Queretaro")
+    email = models.EmailField(
+        _("Correo Electrónico"), default="flareon_rojo@hotmail.com"
+    )
+    call = models.CharField(_("Teléfono"), max_length=20, default="No especificado")
+
+    def save(self, *args, **kwargs):
+        if not self.pk and ContactInfo.objects.exists():
+            raise ValueError("Solo puede existir una instancia de ContactInfo")
+        return super(ContactInfo, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("Información de Contacto")
+        verbose_name_plural = _("Información de Contacto")
+
+    def __str__(self):
+        return self.tittle_section

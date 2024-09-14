@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Education, Experience, Skill, SkillDesc, AboutMe, PortfolioHeader, Fact, FactDesc, ResumeDesc, PortfolioDesc, PortfolioItem, Service, ServicesDesc
+from .models import Education, Experience, Skill, SkillDesc, AboutMe, PortfolioHeader, Fact, FactDesc, ResumeDesc, PortfolioDesc, PortfolioItem, Service, ServicesDesc, Testimonial, TestimonialDesc,ContactInfo
 
 @admin.register(PortfolioHeader)
 class PortfolioHeaderAdmin(admin.ModelAdmin):
@@ -128,3 +128,29 @@ class ServicesDescAdmin(admin.ModelAdmin):
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ("title", "description")
+    
+@admin.register(TestimonialDesc)
+class TestimonialDescAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Deshabilitar la opción de agregar si ya existe una instancia
+        return not TestimonialDesc.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Deshabilitar la opción de eliminar
+        return False
+
+
+@admin.register(Testimonial)
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = ("author_name", "author_position")
+
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        # Deshabilitar la opción de agregar si ya existe una instancia
+        return not ContactInfo.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Deshabilitar la opción de eliminar
+        return False
